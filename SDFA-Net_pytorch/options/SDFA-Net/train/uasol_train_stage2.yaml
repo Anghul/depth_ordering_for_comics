@@ -1,0 +1,37 @@
+train_dataset:
+  - type: UASOLDataset
+    params:
+      load_KTmatrix: False
+      flip_mode: img
+      split_file: data_splits/uasol/train_list.json
+      patch_size: [192, 640]
+      full_size: [384, 1280]    
+
+visual:
+  type:
+    color_s: img
+    color_o: img
+    disp_s: disp
+    fine_disp_s: disp
+    warp_img_fine_s: img
+    synth_img_s: img
+    delta_1_1_s: vector
+    delta_2_1_s: vector
+    delta_3_1_s: vector
+    delta_1_2_s: vector
+    delta_2_2_s: vector
+    delta_3_2_s: vector
+    delta_1_3_s: vector
+    delta_2_3_s: vector
+    delta_3_3_s: vector
+
+  shape: [[color_s,  color_s, color_o],
+          [disp_s, warp_img_fine_s, synth_img_s],
+          [fine_disp_s, [color_s, delta_3_1_s, 1], [color_s, disp_s, 2]],
+          [delta_3_1_s, delta_3_2_s, delta_3_3_s],
+          [delta_2_1_s, delta_2_2_s, delta_2_3_s],
+          [delta_1_1_s, delta_1_2_s, delta_1_3_s]]
+
+_train: options/_base/datasets/uasol/train.yaml
+_val: options/_base/datasets/uasol/test.yaml
+_base: options/_base/networks/sdfa_net.yaml

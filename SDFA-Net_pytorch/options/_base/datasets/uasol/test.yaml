@@ -1,0 +1,6 @@
+_dataset:
+  type: UASOLDataset
+  params:
+    split_file: data_splits/uasol/test_list.json
+    load_KTmatrix: False
+    flip_mode: img
